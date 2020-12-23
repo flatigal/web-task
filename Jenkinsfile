@@ -1,23 +1,11 @@
 node {
-        stage('Create nginx image') {
-            sh 'echo "Create nginx image"'
-            sh '''
-                docker build -t flatigal/web-task .
-            '''
-        }
-
-        stage('Push image to registry') {
-            sh 'echo "Push image to registry"'
-            sh '''
-                docker push flatigal/web-task
-            '''
+        stage('Create/Push nginx image') {
+            sh 'echo "Create/Push nginx image"'
+            build job: 'create-nginx-image'
         }
 
         stage('Deploy image to web') {
             sh 'echo "Deploy image to web"'
-            sh '''
-                echo "Deploy image to web"
-            '''
+            build job: 'deploy-web'
         }
-
 }
