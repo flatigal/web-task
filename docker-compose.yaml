@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  app:
+    container_name: web-task
+    image: flatigal/web-task
+    ports:
+      - "80:80"
+      - "443:443"
